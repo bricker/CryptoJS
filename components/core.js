@@ -1,9 +1,3 @@
-/*
-CryptoJS v3.1.2
-code.google.com/p/crypto-js
-(c) 2009-2013 by Jeff Mott. All rights reserved.
-code.google.com/p/crypto-js/wiki/License
-*/
 /**
  * CryptoJS core components.
  */
@@ -216,14 +210,11 @@ var CryptoJS = CryptoJS || (function (Math, undefined) {
                     var thatByte = (thatWords[i >>> 2] >>> (24 - (i % 4) * 8)) & 0xff;
                     thisWords[(thisSigBytes + i) >>> 2] |= thatByte << (24 - ((thisSigBytes + i) % 4) * 8);
                 }
-            } else if (thatWords.length > 0xffff) {
+            } else {
                 // Copy one word at a time
                 for (var i = 0; i < thatSigBytes; i += 4) {
                     thisWords[(thisSigBytes + i) >>> 2] = thatWords[i >>> 2];
                 }
-            } else {
-                // Copy all words at once
-                thisWords.push.apply(thisWords, thatWords);
             }
             this.sigBytes += thatSigBytes;
 
